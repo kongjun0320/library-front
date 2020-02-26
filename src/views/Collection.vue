@@ -1,15 +1,26 @@
 <template>
   <div class="collection-box">
     <k-header :title="title">
-      <van-icon name="search" slot="left" />
+      <van-icon @click="$router.push('/search')" name="search" slot="left" />
       <span slot="right">编辑</span>
     </k-header>
-    <book-list-item v-for="(item) in booklists" :key="item.id" :item="item"></book-list-item>
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="我是有底线的"
+      @load="onLoad"
+    >
+      <book-list-item
+        v-for="item in booklists"
+        :key="item.id"
+        :item="item"
+      ></book-list-item>
+    </van-list>
   </div>
 </template>
 
 <script>
-import { Icon } from 'vant'
+import { Icon, List } from 'vant'
 import KHeader from '../components/KHeader'
 import BookListItem from '../components/BookListItem'
 export default {
@@ -17,10 +28,13 @@ export default {
   components: {
     KHeader,
     BookListItem,
-    [Icon.name]: Icon
+    [Icon.name]: Icon,
+    [List.name]: List
   },
   data () {
     return {
+      loading: false,
+      finished: false,
       title: '收藏',
       booklists: [
         {
@@ -40,6 +54,28 @@ export default {
           index: '123234'
         }
       ]
+    }
+  },
+  mounted () {
+    this.initCollectBookList()
+  },
+  methods: {
+    onLoad () {
+      this.loading = true
+      setTimeout(() => {
+        // 加载状态结束
+        this.loading = false
+      }, 1000)
+      this.finished = true
+    },
+    initCollectBookList () {
+      this.$axios.get('/api/bookCollect').then(result => {
+        if (result.code === 0) {
+          this.booklists = result.list
+        } else {
+          this.booklists = []
+        }
+      })
     }
   }
 }

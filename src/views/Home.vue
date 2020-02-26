@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     toSearchhandle () {
-      console.log('ddd')
+      this.$router.push('/search')
     },
     getSwiperList () {
       this.$axios.get('/api/swiper').then(result => {
@@ -87,12 +87,9 @@ export default {
 </script>
 <style lang="scss">
 .home {
-  .van-icon {
-    font-size: 0.4rem;
-    // margin-top: 0.12rem;
-  }
   .van-icon-search{
     margin-top: 0.12rem;
+     font-size: 0.6rem;
   }
 }
 </style>

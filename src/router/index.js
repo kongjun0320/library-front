@@ -5,8 +5,17 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/',
+    name: 'Home1',
+    component: () => import('../views/Home.vue'),
+    meta: {
+      isTab: true,
+      auth: true
+    }
+  },
+  {
     path: '/home',
-    name: 'Home',
+    name: 'Home2',
     component: () => import('../views/Home.vue'),
     meta: {
       isTab: true,
@@ -15,20 +24,26 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component: () => import('../views/Login.vue')
   },
   {
     path: '/collection',
-    name: 'collection',
+    name: 'Collection',
     component: () => import('../views/Collection.vue'),
-    meta: { isTab: true }
+    meta: { isTab: true, auth: true }
   },
   {
     path: '/mine',
-    name: 'mine',
+    name: 'Mine',
     component: () => import('../views/Mine.vue'),
-    meta: { isTab: true }
+    meta: { isTab: true, auth: true }
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('../views/Search.vue'),
+    meta: { isTab: true, auth: true }
   }
 ]
 

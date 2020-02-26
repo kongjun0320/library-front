@@ -1,6 +1,6 @@
 <template>
   <div class="k-swiper">
-    <van-swipe v-if="swiperList.length">
+    <van-swipe v-if="swiperList.length" :autoplay="2000">
       <van-swipe-item v-for="item in swiperList" :key="item.imgId">
         <img class="img" v-lazy="item.imgUrl" />
       </van-swipe-item>

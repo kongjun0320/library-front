@@ -2,13 +2,13 @@
   <div class="book-list-item">
     <van-row class="k-row">
       <van-col span="6">
-        <img class="img" :src="item.img" alt="" />
+        <img class="img" :src="item.imgUrl" alt="" />
       </van-col>
       <van-col class="desc" span="14">
-        <p class="name">{{ item.name }}</p>
+        <p class="name">{{ item.bookName }}</p>
         <p class="author">{{ item.author }}</p>
         <p class="where">{{ item.where }}</p>
-        <p class="index">{{ item.index }}</p>
+        <p class="index">{{ item.bookIndex }}</p>
       </van-col>
       <van-col span="4" class="handle-cls">
         <span class="zt">置顶</span>
